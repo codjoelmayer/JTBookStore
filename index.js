@@ -11,6 +11,8 @@ const port = parseInt(process.env.port) || 4000;
 const app = express();
 // Router
 const route = express.Router();
+// Middleware
+const {errorHandling} = require('./middleware/ErrorHandling');
 
 /*
 express.json: setting the content-type to application/json
@@ -20,12 +22,39 @@ values of any type instead of just a string
 app.use(
     route,
     express.json,
-    bodyParser.urlencoded({extended: false}),
+    bodyParser.urlencoded({extended: false})
 )
 // Home or /
 // ^/$|/jtbookstore
 route.get('/', (req, res)=>{
     res.status(200).sendFile(path.join(__dirname, './view/index.html'));
+})
+// Login
+route.patch('/login', bodyParser.json(), (req, res)=>{
+    const {emailAdd, userPass} = req.body;
+    const strQry = 
+    `
+    SELECT firstName, lastName, emailAdd, userPass, 
+    country
+    FROM Users
+    WHERE emailAdd = '${emailAdd}';
+    `;
+    db.query(strQry, (err, data)=>{
+        if(err) throw err;
+        if((!data.length) || (data == null)) {
+            res.status(401).json({err: 
+                "You provide a wrong email address"});
+        }else {
+            let {firstName, lastName} = data[0];
+            if(userPass === data[0].userPass) {
+                res.status(200).json({msg: 
+                    `Welcome back, ${firstName} ${lastName}`});
+            }else {
+                res.status(200).json({err: 
+                    `You provide a wrong password`});
+            }
+        }
+    }) 
 })
 // Retrieve all users
 route.get('/users', (req, res)=>{
@@ -38,6 +67,23 @@ route.get('/users', (req, res)=>{
     db.query(strQry, (err, data)=>{
         if(err) throw err;
         res.status(200).json( {results: data} );
+    })
+});
+// Update
+route.put('/user/:id',bodyParser.json(), (req, res)=>{
+    let data = req.body;
+    const strQry = 
+    `
+    UPDATE Users
+    SET ?
+    WHERE userID = ?;
+    `;
+    //db
+    db.query(strQry,[data, req.params.id], 
+        (err)=>{
+        if(err) throw err;
+        res.status(200).json( {msg: 
+            "A row was affected"} );
     })
 });
 // Register
@@ -56,6 +102,25 @@ route.post('/register', bodyParser.json(), (req, res)=> {
         }
     })
 })
+// Delete
+route.delete('/user/:id', (req, res)=>{
+    const strQry = 
+    `
+    DELETE FROM Users
+    WHERE userID = ?;
+    `;
+    //db
+    db.query(strQry,[req.params.id], 
+        (err)=>{
+        if(err) throw err;
+        res.status(200).json( {msg: 
+            "A record was removed from a database"} );
+    })
+});
+
 app.listen(port, ()=>{
     console.log(`Server is running at ${port}`);
 })
+
+// Global error handling
+app.use(errorHandling);
