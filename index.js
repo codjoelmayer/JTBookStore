@@ -12,12 +12,18 @@ const app = express();
 // Router
 const route = express.Router();
 
+/*
+express.json: setting the content-type to application/json
+bodyParser.urlencoded( {extended: true} ): Object will contain
+values of any type instead of just a string
+*/
 app.use(
     route,
     express.json,
     bodyParser.urlencoded({extended: false}),
 )
 // Home or /
+// ^/$|/jtbookstore
 route.get('/', (req, res)=>{
     res.status(200).sendFile(path.join(__dirname, './view/index.html'));
 })
@@ -31,7 +37,7 @@ route.get('/users', (req, res)=>{
     //db
     db.query(strQry, (err, data)=>{
         if(err) throw err;
-        res.status(200).json( {result: data} );
+        res.status(200).json( {results: data} );
     })
 });
 // Register
