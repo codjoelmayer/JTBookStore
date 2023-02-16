@@ -1,6 +1,8 @@
 const express = require('express');
 // path
 const path = require('path');
+// cors
+const cors = require('cors');
 // db
 const db = require('./config');
 // body-parser
@@ -21,6 +23,9 @@ values of any type instead of just a string
 */
 app.use(
     route,
+    cors({
+        origin: '*'
+    }),
     express.json,
     bodyParser.urlencoded({extended: false})
 )
