@@ -50,7 +50,6 @@ route.patch('/login', bodyParser.json(), (req, res)=>{
             res.status(401).json({err: 
                 "You provide a wrong email address"});
         }else {
-            let {firstName, lastName} = data[0];
             if(userPass === data[0].userPass) {
                 res.status(200).json(
                     {result: data[0]});
