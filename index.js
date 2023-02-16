@@ -8,7 +8,7 @@ const db = require('./config');
 // body-parser
 const bodyParser = require('body-parser');
 // port 
-const port = parseInt(process.env.port) || 4000;
+const port = parseInt(process.env.PORT) || 4000;
 // Express app
 const app = express();
 // Router
