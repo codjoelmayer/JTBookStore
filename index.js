@@ -52,8 +52,8 @@ route.patch('/login', bodyParser.json(), (req, res)=>{
         }else {
             let {firstName, lastName} = data[0];
             if(userPass === data[0].userPass) {
-                res.status(200).json({msg: 
-                    `Welcome back, ${firstName} ${lastName}`});
+                res.status(200).json(
+                    {result: data[0]});
             }else {
                 res.status(200).json({err: 
                     `You provide a wrong password`});
