@@ -65,7 +65,7 @@ route.get('/users', (req, res)=>{
     `;
     //db
     db.query(strQry, (err, data)=>{
-        if(err) res.status(400).json({err});
+        if(err) throw err;
         else res.status(200).json( 
             {results: data} );
     })
