@@ -3,6 +3,6 @@ module.exports = defineConfig({
   transpileDependencies: true,
   devServer: {
     proxy: 
-    "https://jtbookstore-w301.onrender.com/"
+    "https://jtbookstore-w301.onrender.com/",
   }
 })

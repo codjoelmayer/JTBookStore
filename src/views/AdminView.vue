@@ -14,7 +14,8 @@
                     <th>Edit/Delete</th>
                </thead>
                <tbody>
-                    <tr v-for="(user, index) in users" :key="index">
+                <!-- {{users}} -->
+                    <!-- <tr v-for="(user, index) in users" :key="index">
                         <td>{{ user.firstName }}</td>
                         <td>{{ user.lastName }}</td>
                         <td>{{ user.emailAdd }}</td>
@@ -25,7 +26,7 @@
                             <button>Delete</button>
                          
                         </td>
-                    </tr>
+                    </tr> -->
                </tbody>
             </table>
         </div>
