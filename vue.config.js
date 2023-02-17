@@ -1,4 +1,8 @@
 const { defineConfig } = require('@vue/cli-service')
 module.exports = defineConfig({
-  transpileDependencies: true
+  transpileDependencies: true,
+  devServer: {
+    proxy: 
+    "https://jtbookstore-w301.onrender.com/"
+  }
 })
