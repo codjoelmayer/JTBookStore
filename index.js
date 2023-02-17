@@ -24,7 +24,9 @@ values of any type instead of just a string
 app.use(
     route,
     cors({
-        origin: '*'
+        mode: 'no-cors',
+        origin: ['http://127.0.0.1:8080', 'http://localhost:8080'],
+    credentials: true
     }),
     express.json,
     bodyParser.urlencoded({extended: false})
@@ -94,7 +96,6 @@ route.put('/user/:id',bodyParser.json(), (req, res)=>{
 // Register
 route.post('/register', bodyParser.json(), (req, res)=> {
     let detail = req.body;
-    console.log(detail);
     // sql query
     const strQry =
     `INSERT INTO Users
