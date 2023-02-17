@@ -51,6 +51,25 @@ export default createStore({
       }else {
         context.commit('setMessage', "Something went wrong");
       }
+    },
+    async updateUser(context, payload) {
+      let res = await axios.put(`${bStoreURL}users/${payload.id}`, payload);
+      let {msg, err} = await res.data;
+      if(msg) {
+        context.dispatch('fetchUsers')
+      }else {
+        context.commit('setMessage', err);
+      }
+    },
+    async deleteUser(context, id) {
+      console.log(`Delete: ${id}`);
+      let res = await axios.delete(`${bStoreURL}user/${id}`);
+      let {msg, err} = await res.data;
+      if(msg) {
+        context.dispatch('fetchUsers');
+      }else {
+        context.commit('setMessage', err);
+      }
     }
   },
   modules: {
