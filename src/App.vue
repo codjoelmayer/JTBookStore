@@ -1,10 +1,20 @@
 <template>
-
-  <div class="container">
+  <HeaderC/>
+  <div class="container min-vh-100">
     <router-view/>
   </div>
+  <FooterC/>
 </template>
-
+<script>
+import HeaderC from './components/HeaderC.vue';
+import FooterC from './components/FooterC.vue';
+export default {
+  components: {
+    HeaderC,
+    FooterC
+  }
+}
+</script>
 <style>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;

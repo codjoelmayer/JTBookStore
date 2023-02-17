@@ -1,0 +1,11 @@
+/* Header */
+.navbar {
+    background-color: rgb(15, 136, 122) !important;
+}
+.navbar-nav li {
+    margin: 0 1rem;
+}
+
+.navbar-nav li > * {
+    font-size: 1.5rem;
+}

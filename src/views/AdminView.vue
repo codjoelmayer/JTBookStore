@@ -1,6 +1,6 @@
 <template>
     <div class="container-fluid">
-        <h2 class="display-2">Login</h2>
+        <h2 class="display-2">Admin</h2>
     </div>
 </template>
 <script>
