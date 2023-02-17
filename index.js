@@ -15,6 +15,9 @@ const app = express();
 const route = express.Router();
 // Middleware
 const {errorHandling} = require('./middleware/ErrorHandling');
+// Message
+const {message} = 
+require('./middleware/message');
 
 /*
 express.json: setting the content-type to application/json
@@ -24,7 +27,8 @@ values of any type instead of just a string
 app.use(
     route,
     cors({
-        origin: ['http://127.0.0.1:8080', 'http://localhost:8080'],
+        origin: ['http://127.0.0.1:8080', 
+        'http://localhost:8080'],
     credentials: true
     }),
     express.json,
@@ -32,7 +36,7 @@ app.use(
 )
 // Home or /
 // ^/$|/jtbookstore
-route.get('/', (req, res)=>{
+route.get('^/$|/jtbookstore', (req, res)=>{
     res.status(200).sendFile(path.join(__dirname, './view/index.html'));
 })
 // Login
