@@ -24,13 +24,16 @@ express.json: setting the content-type to application/json
 bodyParser.urlencoded( {extended: true} ): Object will contain
 values of any type instead of just a string
 */
+app.use((req, res, next)=> {
+    res.append('Access-Control-Allow-Origin', ['http://127.0.0.1:8080', 
+    'http://localhost:8080']);
+    res.append('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+    res.append('Access-Control-Allow-Headers', 'Content-Type');
+    next();
+});
 app.use(
     route,
-    cors({
-        origin: ['http://127.0.0.1:8080', 
-        'http://localhost:8080'],
-    credentials: true
-    }),
+    cors(),
     express.json,
     bodyParser.urlencoded({extended: false})
 )
