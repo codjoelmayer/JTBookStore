@@ -86,7 +86,6 @@ class User {
     async createUser(req, res) {
         // Payload
         let detail = req.body;
-        console.log(detail);
         // Hashing user password
         detail.userPass = await 
         hash(detail.userPass, 15);
