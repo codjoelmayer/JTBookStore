@@ -6,9 +6,11 @@ const bodyParser = require('body-parser');
 // Router
 const route = express.Router();
 // Models
-const {User} = require('../model');
+const {User, Product} = require('../model');
 // Create a user instance
 const user = new User();
+// Product instance
+const product = new Product();
 // ^/$|/jtbookstore
 route.get('^/$|/jtbookstore', (req, res)=>{
     res.status(200).sendFile(path.join(__dirname, '../view/index.html'));
@@ -38,5 +40,32 @@ route.post('/register', bodyParser.json(), (req, res)=> {
 route.delete('/user/:id', (req, res)=>{
     user.deleteUser(req, res);
 });
+// =====Products======
+// Fetch all products
+route.get('/products', (req, res)=> {
+    product.fetchProducts(req, res);
+})
+// Fetch a single product
+route.get('/product/:id', 
+(req, res)=> {
+    product.fetchProduct(req, res);
+})
+// Add a new product
+route.post('/product', 
+bodyParser.json(), 
+(req, res)=> {
+    product.addProduct(req, res);
+})
+// Update a product
+route.put('/product/:id', 
+bodyParser.json(),
+(req, res)=> {
+    product.updateProduct(req, res);
+})
+// Delete a product
+route.delete('/product/:id', 
+(req, res)=> {
+    product.deleteProduct(req, res);
+})
 
 module.exports = route;
