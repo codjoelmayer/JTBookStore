@@ -1,6 +1,6 @@
 const express = require('express');
 // route
-const route = require('./controller');
+const router = require('./controller');
 // cors
 const cors = require('cors');
 // port 
@@ -20,7 +20,7 @@ app.use(errorHandling,
     next();
 })
 app.use(
-    route,
+    router,
     cors({
         origin: [
         'http://localhost:8080'],
