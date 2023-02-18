@@ -101,8 +101,6 @@ class User {
     }
 }
 
-
-
 // Export User class
 module.exports = {
     User
