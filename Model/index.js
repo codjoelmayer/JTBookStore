@@ -1,5 +1,10 @@
 // Database configuration
 const db = require('../config');
+// bcrypt module
+const {hash, compare, hashSync } = require('bcrypt');
+// Middleware for creating a token
+const {createToken} = require('../middleware/AuthenticateUser');
+// User 
 class User {
     login(req, res) {
         const {emailAdd, userPass} = req.body;
@@ -100,6 +105,7 @@ class User {
         })    
     }
 }
+// Product
 
 // Export User class
 module.exports = {
