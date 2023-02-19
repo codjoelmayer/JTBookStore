@@ -24,9 +24,7 @@
                         <th scope="col">User Role</th>
                         <th scope="col">Profile</th>
                         <th scope="col">Join Date</th>
-                        <th scope="col">Cart</th>
-                        <th scope="col">Edit</th>
-                        <th scope="col">Delete</th>
+                        <th scope="col">Edit or Delete</th>
                     </tr>
                 </thead>
                 <tbody v-if="users">
@@ -41,15 +39,14 @@
                         <td data-title="User Profile">
                             <img class="img-thumbnail sameSize" :src="user.userProfile" :alt="user.firsName" loading="lazy"/>
                         </td>
-                        <td data-title="Join Date">{{user.joinDate}}</td>
-                        <td data-title="Cart">{{user.cart}}</td>
+                        <td data-title="Join Date">{{ dateFormat(user.joinDate) }}</td>
                         <td data-title="Edit or Delete">
                             <i class="bi bi-pencil-square"></i>
                             <i class="bi bi-trash3-fill"></i>
                         </td>
                     </tr>
                 </tbody>
-                <div v-else>
+                <div class="d-block" v-else>
                     <SpinnerC/>
                 </div>
             </table>
@@ -61,6 +58,7 @@
 import {computed} from '@vue/runtime-core';
 import { useStore } from 'vuex';
 import SpinnerC from './SpinnerC.vue';
+import moment from 'moment';
 export default {
     components: {
         SpinnerC
@@ -72,6 +70,11 @@ export default {
         computed( ()=>store.state.users );
         return {
             users,
+        }
+    },
+    methods: {
+        dateFormat(value) {
+            return moment(value).format("YYYY-MM-DD");
         }
     }
 }

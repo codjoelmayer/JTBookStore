@@ -2,10 +2,18 @@
 @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css");
 /* Custom variables */
 :root{
+    --primaryColor: black;
+    --secondaryColor: white;
+    --alternativeColor: gray;
+    --greenColor: green;
+    --navbarBg: rgb(15, 136, 122);
+}
+*{
+    box-sizing: border-box;
 }
 /* Header */
 .navbar {
-    background-color: rgb(15, 136, 122) !important;
+    background-color: var(--navbarBg) !important;
 }
 .navbar-nav li {
     margin: 0 1rem;
@@ -19,6 +27,14 @@
     width: 5rem;
     height: 5rem;
 }
+/* User CRUD */
+td i.bi {
+    margin: 0 2rem 0;
+    font-size: 1.5rem;
+}
+td i.bi:hover {
+    outline: 3px var(--navbarBg) solid;
+}
 /* Media queries */
 @media (width <= 900px) {
     .row {
@@ -28,4 +44,31 @@
         width: 2rem;
         height: 2rem;
     }
+    /* Table */
+    tbody, 
+    tr,
+    td {
+        display: block;
+    }
+    thead tr {
+        position: absolute;
+        display: none;
+    }
+    tbody td {
+        position: relative;
+        text-align: right;
+    }
+    tbody td::before {
+        content: attr(data-title);
+        position: absolute;
+        left: 0;
+        font-weight: bold;
+        background-color: var(--alternativeColor);
+    }
+    /* image */
+    td img {
+        width: 5rem;
+        height: 5rem;
+    }
+
 }
