@@ -5,6 +5,8 @@ export default createStore({
   state: {
     users: null,
     user: null,
+    products: null,
+    product: null,
     showSpinner: true,
     message: null
   },
@@ -16,6 +18,12 @@ export default createStore({
     },
     setUser(state, value) {
       state.user = value
+    },
+    setProducts(state, values) {
+      state.products = values
+    },
+    setProduct(state, value) {
+      state.product = value
     },
     setSpinner(state, value) {
       state.showSpinner = value
@@ -69,6 +77,61 @@ export default createStore({
         context.dispatch('fetchUsers');
       }else {
         context.commit('setMessage', err);
+      }
+    },
+    async addProduct(context, payload) {
+      let res = await axios.post(`${bStoreURL}product`, payload);
+      let {msg, err}  = await res.data;
+      if(msg) {
+        context.commit('setMessage', msg)
+      }
+      if(err) {
+        context.commit('setMessage', err)
+      }
+    },
+    async fetchProducts(context) {
+      const res = 
+      await axios.get(`${bStoreURL}products`);
+      const {results, err} = await res.data;
+      if(results) {
+          context.commit('setProducts', results);
+          context.commit('setSpinner', false);
+      }
+      if(err) {
+          context.commit('setMessage', err)
+      }
+    },
+    async fetchProduct(context, id) {
+      const res = 
+      await axios.get(`${bStoreURL}product/${id}`);
+      const {results, err} = await res.data;
+      if(results) {
+          context.commit('setProduct', results);
+          context.commit('setSpinner', false);
+      }
+      if(err) {
+          context.commit('setMessage', err)
+      }    
+    },
+    async updateProduct(context, payload) {
+      const res = 
+      await axios.put(`${bStoreURL}product/${payload.id}`, payload);
+      const {msg, err} = await res.data;
+      if(msg) {
+          context.dispatch('fetchProducts');
+      }
+      if(err) {
+          context.commit('setMessage', msg || err)
+      }
+    },
+    async deleteProduct(context, id) {
+      const res = await axios.delete(`${bStoreURL}product/${id}`);
+      const {err, msg} = await res.data;
+      if(msg) {
+          context.dispatch('fetchProducts');
+      }
+      if(err) {
+          context.commit('setMessage', err);
       }
     }
   },
