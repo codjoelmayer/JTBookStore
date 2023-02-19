@@ -1,3 +1,8 @@
+/* Bootstrap icon */
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css");
+/* Custom variables */
+:root{
+}
 /* Header */
 .navbar {
     background-color: rgb(15, 136, 122) !important;
@@ -5,7 +10,22 @@
 .navbar-nav li {
     margin: 0 1rem;
 }
-
 .navbar-nav li > * {
     font-size: 1.5rem;
+}
+/* Home */
+/* Spinner */
+.spinner-border {
+    width: 5rem;
+    height: 5rem;
+}
+/* Media queries */
+@media (width <= 900px) {
+    .row {
+        flex-direction: column;
+    }
+    .spinner-border{
+        width: 2rem;
+        height: 2rem;
+    }
 }

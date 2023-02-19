@@ -3,6 +3,5 @@
         <p class="lead">
             Copyright
         </p>
-
     </div>
 </template>

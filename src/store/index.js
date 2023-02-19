@@ -53,11 +53,11 @@ export default createStore({
     },
     async fetchUsers(context) {
       let res = await axios.get(`${bStoreURL}users`);
-      let {results} = await res.data;
+      let {results, err} = await res.data;
       if(results) {
         context.commit('setUsers', results);
       }else {
-        context.commit('setMessage', "Something went wrong");
+        context.commit('setMessage', err);
       }
     },
     async updateUser(context, payload) {
