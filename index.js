@@ -9,6 +9,8 @@ const port = parseInt(process.env.PORT) || 4000;
 const app = express();
 // Middleware
 const {errorHandling} = require('./middleware/ErrorHandling');
+//
+const cookieParser = require('cookie-parser');
 /*
 express.json: setting the content-type to application/json
 bodyParser.urlencoded( {extended: true} ): Object will contain
@@ -26,6 +28,7 @@ app.use(
         'http://localhost:8080'],
         credentials: true
     }),
+    cookieParser(),
     express.json,
     express.urlencoded({extended: false})
 )
