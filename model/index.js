@@ -55,8 +55,7 @@ class User {
     fetchUsers(req, res) {
         const strQry = 
         `
-        SELECT userID, firstName, lastName, gender, emailAdd, userRole, userProfile, 
-        country
+        SELECT userID, firstName, lastName, gender, cellphoneNumber, emailAdd, userRole, userProfile, joinDate, cart
         FROM Users;
         `;
         //db
@@ -69,8 +68,7 @@ class User {
     fetchUser(req, res) {
         const strQry = 
         `
-        SELECT userID, firstName, lastName, gender, emailAdd, userRole, userProfile, 
-        country
+        SELECT userID, firstName, lastName, gender, cellphoneNumber, emailAdd, userRole, userProfile, joinDate, cart
         FROM Users
         WHERE userID = ?;
         `;
