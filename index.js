@@ -16,23 +16,21 @@ express.json: setting the content-type to application/json
 bodyParser.urlencoded( {extended: true} ): Object will contain
 values of any type instead of just a string
 */
-app.use(errorHandling, 
+app.use( 
     (req, res, next)=> {
     res.header('Access-Control-Allow-Origin', 'http://localhost:8080')
     next();
 })
 app.use(
-    route,
-    cors({
-        origin: [
-        'http://localhost:8080'],
-        credentials: true
-    }),
+    cors(),
     cookieParser(),
     express.json,
     express.urlencoded({extended: false})
 )
+app.use(route);
 // Server is running
 app.listen(port, ()=> {
     console.log(`Server is running`)
 });
+// Handling all errors
+app.use(errorHandling);
