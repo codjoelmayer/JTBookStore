@@ -35,6 +35,24 @@ td i.bi {
 td i.bi:hover {
     outline: 3px var(--navbarBg) solid;
 }
+/* Add user */
+.form-control-wrapper {
+   margin: .5rem 0;
+}
+span.inline {
+    display: flex;
+    position: relative;
+}
+span.inline .bi {
+    position: absolute;
+    right: 1px;
+    top: .5rem;
+    font-size: 1rem;
+    color: var(--greenColor);
+}
+span.inline:hover .bi{
+    display: none;
+}
 /* Media queries */
 @media (width <= 900px) {
     .row {

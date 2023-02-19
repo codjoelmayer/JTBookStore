@@ -8,11 +8,12 @@
                 <input class="form-control" type="text" placeholder="Filter users by their roles">
             </div>
             <div class="col">
-                <button class="btn btn-success w-100">Add User</button>
+                <button class="btn btn-success w-100" data-bs-toggle="modal" data-bs-target="#addUserModal">Add User</button>
+                <AddUser addUser="addUserModal"/>
             </div>
         </div>
         <div class="row">
-            <table class="table table-hover">
+            <table class="table table-hover" v-if="users">
                 <thead class="bg-gradient">
                     <tr>
                         <th scope="col">User ID</th>
@@ -27,7 +28,7 @@
                         <th scope="col">Edit or Delete</th>
                     </tr>
                 </thead>
-                <tbody v-if="users">
+                <tbody>
                     <tr v-for="(user, index) in users" :key="index">
                         <td data-title="User ID">{{user.userID}}</td>
                         <td data-title="Firstname">{{user.firstName}}</td>
@@ -46,10 +47,10 @@
                         </td>
                     </tr>
                 </tbody>
-                <div class="d-block" v-else>
-                    <SpinnerC/>
-                </div>
             </table>
+            <div class="mt-4" v-else>
+                <SpinnerC/>
+            </div>
         </div>
 
     </div>
@@ -59,9 +60,11 @@ import {computed} from '@vue/runtime-core';
 import { useStore } from 'vuex';
 import SpinnerC from './SpinnerC.vue';
 import moment from 'moment';
+import AddUser from './AddUser.vue';
 export default {
     components: {
-        SpinnerC
+        SpinnerC,
+        AddUser
     },
     setup() {
         const store = useStore();
