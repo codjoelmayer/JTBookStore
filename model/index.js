@@ -98,8 +98,7 @@ class User {
         SET ?;`;
         db.query(strQry, [detail], (err)=> {
             if(err) {
-                res.status(400).json(
-                    {err: "Please use another email address."});
+                throw err
             }else {
                 // Create a token
                 const jwToken = createToken(user);

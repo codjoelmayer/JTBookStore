@@ -20,7 +20,7 @@ app.use(
     (req, res, next)=> {
         res.header('Access-Control-Allow-Origin', 'http://localhost:8080')
         next();
-    })
+    });
 app.use(route);
 app.use(
     cors(),
@@ -28,6 +28,7 @@ app.use(
     express.json,
     express.urlencoded({extended: false})
 )
+
 // Server is running
 app.listen(port, ()=> {
     console.log(`Server is running`)
