@@ -98,7 +98,7 @@ class User {
         SET ?;`;
         db.query(strQry, [detail], (err)=> {
             if(err) {
-                throw err
+                res.status(401).json({err});
             }else {
                 // Create a token
                 const jwToken = createToken(user);
