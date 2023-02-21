@@ -1,16 +1,15 @@
 <template>
-  <div class="container">
-    <div class="row">
-      <div class="modal fade" :id="addUser" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="row">
+      <div class="modal fade" :id="updateUser" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
-              <h4 class="display-4 m-auto" id="exampleModalLabel">Add user</h4>
+              <h4 class="display-4 text-center" id="exampleModalLabel">Update User</h4>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body ">
-              <form class="form" @submit.prevent="createUser">
-                  <div class="form-control-wrapper">  
+              <form class="form" @submit.prevent="updateRecord">
+                <div class="form-control-wrapper">  
                     <span class="inline">
                       <input class="form-control" type="text" placeholder="Firstname" required v-model="payload.firstName"/>   
                       <i class="bi bi-person"></i>           
@@ -67,7 +66,7 @@
                     <label class="form-control bg-gradient" v-show="userMsg">{{userMsg}}</label>
                   </div>
                   <div class="form-control-wrapper">  
-                    <button type="submit" class="btn btn-success">Submit</button>
+                    <button type="submit" class="btn btn-success">Update</button>
                   </div>
               </form>
             </div>
@@ -78,53 +77,39 @@
         </div>
       </div>
     </div>
-  </div>
 </template>
-
 <script>
-// import {computed} from '@vue/runtime-core';
-// import { useStore  } from 'vuex';
-
+import {computed} from '@vue/runtime-core';
+import { useStore  } from 'vuex';
+// import {getCurrentInstance} from 'vue';
 export default {
-    props: ["addUser"],
+    props: ["updateUser", "record"],
     data() {
         return {
           payload : {
-            firstName: '',
-            lastName: '',
-            gender: '',
-            cellphoneNumber: '',
-            emailAdd: '',
-            userPass: '',
-            userRole: '',
-            userProfile: 'https://i.postimg.cc/3rZ0H0D8/profile-Image.png',
-            joinDate: ''
+            firstName: this.record.firstName,
+            lastName: this.record.lastName,
+            gender: this.record.gender,
+            cellphoneNumber: this.record.cellphoneNumber,
+            emailAdd: this.record.emailAdd,
+            userPass: this.record.userPass,
+            userRole: this.record.userRole,
+            userProfile: this.record.userProfile,
+            joinDate: this.record.joinDate
           }
         }
     },
-    // setup () {
-    //   const store = useStore();
-    //   const createUser = ()=> {
-    //     store.dispatch("register", getCurrentInstance().data.payload);
-    //   }
-    //   const userMsg = 
-    //   computed( ()=>store.state.message )
-
-    //   return {
-    //     userMsg,
-    //     createUser
-    //   }
-    // }
-    computed: {
-      userMsg() {
-        return this.$store.state.message;
-      }
-    },
-    methods: {
-      createUser() {
-        this.$store.dispatch("register", this.payload);
-        this.$store.dispatch("fetchUsers");
-      }
-    },
+    setup() {
+        const store = useStore();
+        // const updateRecord = ()=> {
+        //     store.dispatch("updateUser", getCurrentInstance().data.payload);
+        // }
+        const userMsg = 
+        computed( ()=>store.state.message )
+        return {
+            userMsg,
+            // updateRecord
+        }
+    }
 }
 </script>

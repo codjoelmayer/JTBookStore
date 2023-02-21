@@ -29,7 +29,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr v-for="(user, index) in users" :key="index">
+                    <tr v-for="(user, index) in users" :key="user.userID">
                         <td data-title="User ID">{{user.userID}}</td>
                         <td data-title="Firstname">{{user.firstName}}</td>
                         <td data-title="Lastname">{{user.lastName}}</td>
@@ -42,8 +42,10 @@
                         </td>
                         <td data-title="Join Date">{{ dateFormat(user.joinDate) }}</td>
                         <td data-title="Edit or Delete">
-                            <i class="bi bi-pencil-square"></i>
-                            <i class="bi bi-trash3-fill"></i>
+                            <i class="bi bi-pencil-square" data-bs-toggle="modal" data-bs-target="#updateUserModal"></i>
+                            <UpdateUser updateUser = "updateUserModal" :record = "users[index]"/>
+                            <i class="bi bi-trash3-fill" 
+                           @click ="removeUser(user.userID)"></i>
                         </td>
                     </tr>
                 </tbody>
@@ -61,18 +63,23 @@ import { useStore } from 'vuex';
 import SpinnerC from './SpinnerC.vue';
 import moment from 'moment';
 import AddUser from './AddUser.vue';
+import UpdateUser from './UpdateUser.vue';
 export default {
     components: {
         SpinnerC,
-        AddUser
+        AddUser,
+        UpdateUser
     },
     setup() {
         const store = useStore();
         store.dispatch("fetchUsers");
         const users = 
         computed( ()=>store.state.users );
+        const removeUser = (id)=>store.dispatch('deleteUser', 
+        id);
         return {
             users,
+            removeUser
         }
     },
     methods: {
