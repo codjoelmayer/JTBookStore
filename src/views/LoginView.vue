@@ -42,8 +42,8 @@ export default {
     data() {
         return {
           payload : {
-            emailAdd: null,
-            userPass: null,
+            emailAdd: '',
+            userPass: '',
           }
         }
     },

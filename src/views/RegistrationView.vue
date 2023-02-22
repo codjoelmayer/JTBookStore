@@ -72,14 +72,14 @@ export default {
     data() {
         return {
           payload : {
-            firstName: null,
-            lastName: null,
-            gender: null,
-            cellphoneNumber: null,
-            emailAdd: null,
-            userPass: null,
+            firstName: '',
+            lastName: '',
+            gender: '',
+            cellphoneNumber: '',
+            emailAdd: '',
+            userPass: '',
             userProfile: 'https://i.postimg.cc/3rZ0H0D8/profile-Image.png',
-            joinDate: null
+            joinDate: ''
           }
         }
     },
@@ -87,6 +87,8 @@ export default {
         const store = useStore();
         const signUp = ()=> {
             store.dispatch("register", getCurrentInstance().data.payload);
+            // Refresh
+            store.dispatch("fetchUsers");
         }
         const userMsg = 
         computed( ()=>store.state.message )
