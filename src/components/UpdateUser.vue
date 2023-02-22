@@ -84,32 +84,29 @@ import { useStore  } from 'vuex';
 import {getCurrentInstance} from 'vue';
 export default {
     props: ["updateUser", "record"],
-    data() {
-        return {
-          payload : {
-            firstName: this.record.firstName,
-            lastName: this.record.lastName,
-            gender: this.record.gender,
-            cellphoneNumber: this.record.cellphoneNumber,
-            emailAdd: this.record.emailAdd,
-            userPass: this.record.userPass,
-            userRole: this.record.userRole,
-            userProfile: this.record.userProfile,
-            joinDate: this.record.joinDate
-          }
-        }
-    },
     setup() {
-        const store = useStore();
-        const updateRecord = ()=> {
-            store.dispatch("updateUser", getCurrentInstance().data.payload);
+      const payload = {
+          firstName: this.record.firstName,
+          lastName: this.record.lastName,
+          gender: this.record.gender,
+          cellphoneNumber: this.record.cellphoneNumber,
+          emailAdd: this.record.emailAdd,
+          userPass: this.record.userPass,
+          userRole: this.record.userRole,
+          userProfile: this.record.userProfile,
+          joinDate: this.record.joinDate
         }
-        const userMsg = 
-        computed( ()=>store.state.message )
-        return {
-            userMsg,
-            updateRecord
-        }
+      const store = useStore();
+      const updateRecord = ()=> {
+          store.dispatch("updateUser", getCurrentInstance().data.payload);
+      }
+      const userMsg = 
+      computed( ()=>store.state.message )
+      return {
+        payload,
+        userMsg,
+        updateRecord
+      }
     }
 }
 </script>
