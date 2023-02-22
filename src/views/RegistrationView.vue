@@ -67,36 +67,31 @@
 <script>
 import {computed} from '@vue/runtime-core';
 import { useStore  } from 'vuex';
-import {getCurrentInstance} from 'vue';
 export default {
-    data() {
-        return {
-          payload : {
-            firstName: '',
-            lastName: '',
-            gender: '',
-            cellphoneNumber: '',
-            emailAdd: '',
-            userPass: '',
-            userProfile: 'https://i.postimg.cc/3rZ0H0D8/profile-Image.png',
-            joinDate: ''
-          }
-        }
-    },
     setup() {
-        const store = useStore();
-        const signUp = ()=> {
-            store.dispatch("register", getCurrentInstance().data.payload);
-            // Refresh
-            store.dispatch("fetchUsers");
-        }
-        const userMsg = 
-        computed( ()=>store.state.message )
-        return {
-            userMsg,
-            signUp
-        }
-
+      const payload = {
+          firstName: '',
+          lastName: '',
+          gender: '',
+          cellphoneNumber: '',
+          emailAdd: '',
+          userPass: '',
+          userProfile: 'https://i.postimg.cc/3rZ0H0D8/profile-Image.png',
+          joinDate: ''
+        };
+      const store = useStore();
+      const signUp = ()=> {
+          store.dispatch("register", payload);
+          // Refresh
+          store.dispatch("fetchUsers");
+      }
+      const userMsg = 
+      computed( ()=>store.state.message )
+      return {
+        payload,
+        userMsg,
+        signUp
+      }
     }
 }
 </script>

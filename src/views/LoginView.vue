@@ -37,27 +37,23 @@
 <script>
 import {computed} from '@vue/runtime-core';
 import { useStore  } from 'vuex';
-import {getCurrentInstance} from 'vue';
 export default {
-    data() {
-        return {
-          payload : {
-            emailAdd: '',
-            userPass: '',
-          }
-        }
-    },
     setup() {
-        const store = useStore();
-        const signIn = ()=> {
-            store.dispatch("login", getCurrentInstance().data.payload);
+      const payload = {
+          emailAdd: '',
+          userPass: '',
         }
-        const userMsg = 
-        computed( ()=>store.state.message )
-        return {
-            userMsg,
-            signIn
-        }
+      const store = useStore();
+      const signIn = ()=> {
+          store.dispatch("login", payload);
+      }
+      const userMsg = 
+      computed( ()=>store.state.message )
+      return {
+        payload,
+        userMsg,
+        signIn
+      }
 
     }
 
