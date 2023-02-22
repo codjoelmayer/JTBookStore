@@ -81,7 +81,6 @@
 <script>
 import {computed} from '@vue/runtime-core';
 import { useStore  } from 'vuex';
-import {getCurrentInstance} from 'vue';
 export default {
     props: ["updateUser", "record"],
     setup() {
@@ -98,7 +97,7 @@ export default {
         }
       const store = useStore();
       const updateRecord = ()=> {
-          store.dispatch("updateUser", getCurrentInstance().data.payload);
+          store.dispatch("updateUser", payload);
       }
       const userMsg = 
       computed( ()=>store.state.message )
