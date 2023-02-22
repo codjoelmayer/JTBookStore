@@ -5,7 +5,7 @@
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
-              <h4 class="display-4 m-auto" id="exampleModalLabel">Add user</h4>
+              <h4 class="display-4 m-auto" id="exampleModalLabel">{{ this.title }}</h4>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body ">
@@ -46,7 +46,7 @@
                         <i class="bi bi-person-fill"></i>
                       </span>        
                   </div>
-                  <div class="form-control-wrapper">  
+                  <div class="form-control-wrapper" v-show="isAdmin">  
                       <span class="inline">
                         <input type="text" class="form-control" placeholder="user / admin" v-model="payload.userRole">
                         <i class="bi bi-person"></i>
@@ -86,7 +86,7 @@
 // import { useStore  } from 'vuex';
 
 export default {
-    props: ["addUser"],
+    props: ["addUser", "title", "isAdmin"],
     data() {
         return {
           payload : {

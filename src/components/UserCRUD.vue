@@ -9,7 +9,7 @@
             </div>
             <div class="col">
                 <button class="btn btn-success w-100" data-bs-toggle="modal" data-bs-target="#addUserModal">Add User</button>
-                <AddUser addUser="addUserModal"/>
+                <AddUser addUser="addUserModal" title="Add user" :isAdmin = "true"/>
             </div>
         </div>
         <div class="row">
