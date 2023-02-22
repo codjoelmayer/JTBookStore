@@ -85,15 +85,15 @@ export default {
     props: ["updateUser", "record"],
     setup() {
       const payload = {
-          firstName: this.record.firstName,
-          lastName: this.record.lastName,
-          gender: this.record.gender,
-          cellphoneNumber: this.record.cellphoneNumber,
-          emailAdd: this.record.emailAdd,
-          userPass: this.record.userPass,
-          userRole: this.record.userRole,
-          userProfile: this.record.userProfile,
-          joinDate: this.record.joinDate
+          firstName: '',
+          lastName: '',
+          gender: '',
+          cellphoneNumber: '',
+          emailAdd: '',
+          userPass: '',
+          userRole: '',
+          userProfile: '',
+          joinDate: ''
         }
       const store = useStore();
       const updateRecord = ()=> {
