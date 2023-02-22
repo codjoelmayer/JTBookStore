@@ -22,7 +22,10 @@
                     <label class="form-control bg-gradient" v-show="userMsg">{{userMsg}}</label>
                   </div>
                   <div class="form-control-wrapper">  
-                    <button type="submit" class="btn btn-success">Login</button>
+                    <button type="submit" class="btn btn-success w-100">Login</button>
+                  </div>
+                  <div class="form-control-wrapper">  
+                    <button type="submit" class="btn btn-outline-success w-100">Forget Password</button>
                   </div>
               </form>
 
