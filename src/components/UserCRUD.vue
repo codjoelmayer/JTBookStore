@@ -29,7 +29,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr v-for="(user, index) in users" :key="user.userID">
+                    <tr v-for="(user) in users" :key="user.userID">
                         <td data-title="User ID">{{user.userID}}</td>
                         <td data-title="Firstname">{{user.firstName}}</td>
                         <td data-title="Lastname">{{user.lastName}}</td>
@@ -43,7 +43,7 @@
                         <td data-title="Join Date">{{ dateFormat(user.joinDate) }}</td>
                         <td data-title="Edit or Delete">
                             <i class="bi bi-pencil-square" data-bs-toggle="modal" data-bs-target="#updateUserModal"></i>
-                            <UpdateUser updateUser = "updateUserModal" :record = "users[index]"/>
+                            <UpdateUser updateUser = "updateUserModal" :record = "user"/>
                             <i class="bi bi-trash3-fill" 
                            @click ="removeUser(user.userID)"></i>
                         </td>
