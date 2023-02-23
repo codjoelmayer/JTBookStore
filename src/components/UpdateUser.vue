@@ -82,7 +82,7 @@
 import {computed} from '@vue/runtime-core';
 import { useStore  } from 'vuex';
 export default {
-    props: ["updateUser", "record"],
+    props: ["updateUser", "data"],
     setup() {
       const payload = {
           firstName: '',
@@ -106,6 +106,9 @@ export default {
         userMsg,
         updateRecord
       }
+    },
+    mounted() {
+      console.log(this.data);
     }
 }
 </script>
