@@ -42,9 +42,8 @@
                         </td>
                         <td data-title="Join Date">{{ dateFormat(user.joinDate) }}</td>
                         <td data-title="Edit or Delete">
-                            <i class="bi bi-pencil-square" data-bs-toggle="modal" data-bs-target="#updateUserModal"></i>
-                            <UpdateUser updateUser = "updateUserModal" 
-                            :data = user />
+                            <i class="bi bi-pencil-square" data-bs-toggle="modal" data-bs-target="#updateUserModal" @click.prevent=""></i>
+                            <UpdateUser updateUser = "updateUserModal"/>
                             <i class="bi bi-trash3-fill" 
                            @click ="removeUser(user.userID)"></i>
                         </td>

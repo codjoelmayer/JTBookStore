@@ -4,7 +4,7 @@
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
-              <h4 class="display-4 text-center" id="exampleModalLabel">Update User</h4>
+              <h4 class="display-4 text-center" id="exampleModalLabel">Update user</h4>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body ">
@@ -82,6 +82,10 @@
 import {computed} from '@vue/runtime-core';
 import { useStore  } from 'vuex';
 export default {
+  /*
+*Please create a database instance called awesomeBed that will be the same name for our express app and GitHub repo.
+
+  */
     props: ["updateUser", "data"],
     setup() {
       const payload = {
@@ -107,7 +111,7 @@ export default {
         updateRecord
       }
     },
-    mounted() {
+    updated() {
       console.log(this.data);
     }
 }

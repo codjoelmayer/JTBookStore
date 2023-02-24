@@ -34,7 +34,8 @@ export default createStore({
   },
   actions: {
     async login(context, payload) {
-      const res = await axios.patch(`${bStoreURL}login`, payload);
+      const res = 
+      await axios.post(`${bStoreURL}login`, payload);
       const {result, err} = await res.data;
       if(result) {
         context.commit('setUser', result);
